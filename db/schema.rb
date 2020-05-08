@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_105708) do
+ActiveRecord::Schema.define(version: 2020_05_08_110832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "week_id", null: false
+    t.bigint "leader_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["leader_id"], name: "index_groups_on_leader_id"
+    t.index ["week_id"], name: "index_groups_on_week_id"
+  end
 
   create_table "units", force: :cascade do |t|
     t.string "name"
@@ -43,5 +53,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_105708) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "groups", "users", column: "leader_id"
+  add_foreign_key "groups", "weeks"
   add_foreign_key "users", "units"
 end

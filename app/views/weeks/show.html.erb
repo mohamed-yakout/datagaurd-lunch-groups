@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @week.number %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @week.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @week.end_date %>
+</p>
+
+<p>
+  <strong>Num users per group:</strong>
+  <%= @week.num_users_per_group %>
+</p>
+
+<%= link_to 'Edit', edit_week_path(@week) %> |
+<%= link_to 'Back', weeks_path %>
